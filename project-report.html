@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartRoute — Comprehensive Project Report</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.55;
+      font-size: 13.5px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-banner {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .title-area h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      margin: 0 0 6px 0;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .title-area h1 .badge {
+      font-size: 11px;
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .title-area p {
+      margin: 0;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .meta-box {
+      text-align: right;
+      font-size: 11.5px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      color: #0f172a;
+      font-size: 17px;
+      margin-top: 26px;
+      margin-bottom: 10px;
+      border-left: 4px solid #ef4444;
+      padding-left: 10px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      color: #1e293b;
+      font-size: 14.5px;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 0 0 12px 0;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .badge-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      color: #475569;
+      margin-right: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+      font-size: 12px;
+      page-break-inside: avoid;
+    }
+
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background: #fcfcfd;
+    }
+
+    .box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+    }
+
+    .box-title {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .code-block {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 11.5px;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      line-height: 1.45;
+      margin: 10px 0 14px 0;
+      page-break-inside: avoid;
+    }
+
+    .formula {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 4px 0 8px 0;
+      font-size: 12.5px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Banner -->
+  <div class="header-banner">
+    <div class="title-area">
+      <h1>SmartRoute <span class="badge">DAA Project</span></h1>
+      <p>Emergency Medical Response & Dynamic Dispatch System</p>
+    </div>
+    <div class="meta-box">
+      <strong>Comprehensive System Report</strong><br>
+      Date: October 2026<br>
+      Status: Active & Deployed
+    </div>
+  </div>
+
+  <!-- Section 1: Executive Summary -->
+  <h2>1. Executive Summary</h2>
+  <p>
+    <strong>SmartRoute</strong> is a full-stack emergency medical response dispatch application designed to drastically minimize Emergency Response Times (ETA). By leveraging core computer science principles—specifically <strong>Design and Analysis of Algorithms (DAA)</strong> graph traversal (Dijkstra's Shortest Path) with dynamic live rerouting—the system coordinates patients, ambulances, and hospital trauma facilities in real-time.
+  </p>
+  <div class="box">
+    <div class="box-title">🎯 Core Project Objectives</div>
+    <ul>
+      <li><strong>Immediate Dispatch Without Sign-up:</strong> Patients can trigger emergency requests in seconds without entering credentials or downloading apps.</li>
+      <li><strong>Condition-Driven Medical Kit Recommendation:</strong> Dynamic triage algorithm suggests the appropriate onboard emergency medical kit (e.g., cardiac defibrillators, burn packs, fracture kits).</li>
+      <li><strong>Dynamic Patient Hospital Selection & Rerouting:</strong> Allows patients or guardians to select their preferred hospital, automatically recalculating the ambulance's route in real time.</li>
+      <li><strong>Hybrid Backend Storage:</strong> Dual-mode architecture utilizing <strong>Supabase (PostgreSQL)</strong> with automatic offline fallback to <strong>Browser LocalStorage</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- Section 2: Technology Stack -->
+  <h2>2. Technology Stack & Architecture</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Layer</th>
+        <th style="width: 38%;">Technologies Used</th>
+        <th>Architectural Function</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend Interface</strong></td>
+        <td>HTML5, Vanilla CSS3 (Glassmorphism), ES6+ JavaScript</td>
+        <td>Zero framework overhead, hyper-responsive UI with sub-second rendering across mobile and desktop.</td>
+      </tr>
+      <tr>
+        <td><strong>DAA Visualizer</strong></td>
+        <td>HTML5 Canvas 2D API & Animation Loop</td>
+        <td>Renders weighted road network graphs, node relaxation, and live path rerouting visualization.</td>
+      </tr>
+      <tr>
+        <td><strong>Web Server</strong></td>
+        <td>Node.js <code>http</code> Native Module (Port 3000)</td>
+        <td>Clean URL routing, static file streaming, mime-type sanitization, and live request logging.</td>
+      </tr>
+      <tr>
+        <td><strong>Primary Database</strong></td>
+        <td>Supabase Cloud (PostgreSQL + PostGIS)</td>
+        <td>Relational incident tracking, hospital ER capacity, and ambulance unit telemetry.</td>
+      </tr>
+      <tr>
+        <td><strong>Fallback Storage</strong></td>
+        <td>HTML5 Web Storage (<code>localStorage</code>)</td>
+        <td>Guarantees 100% functionality offline and during live academic/classroom evaluations.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 3: Frontend Module Details -->
+  <h2>3. System Modules & Features</h2>
+
+  <div class="grid-2">
+    <div class="box">
+      <div class="box-title">🚨 1. User Emergency Portal</div>
+      <p style="font-size: 12px; margin-bottom: 6px;"><code>user-portal.html</code></p>
+      <ul>
+        <li><strong>One-Tap Geolocation:</strong> Automatically fetches coordinates using the HTML5 Geolocation API.</li>
+        <li><strong>Triage & Severity Assessment:</strong> Captures condition, severity (Critical, High, Medium, Low), and contact info.</li>
+        <li><strong>Smart Kit Matching:</strong> Recommends kit configurations based on selected medical conditions.</li>
+        <li><strong>Hospital Choice:</strong> Patients pick from nearby hospitals with real-time bed count display.</li>
+        <li><strong>Live Ticket Status:</strong> Real-time ETA countdown, unit code, and driver contact.</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="box-title">⚡ 2. DAA Algorithm Visualizer</div>
+      <p style="font-size: 12px; margin-bottom: 6px;"><code>daa-explain.html</code></p>
+      <ul>
+        <li><strong>Weighted Graph Canvas:</strong> Visualizes Ambulance Base (A), Patient (P), Junctions (J1-J3), and Hospitals (h1-h4).</li>
+        <li><strong>Dijkstra Step-by-Step:</strong> Interactive step relaxation showing visited nodes, tentative distances, and queue state.</li>
+        <li><strong>Dynamic Rerouting:</strong> Demonstrates real-time recalculation when a destination hospital is switched mid-journey.</li>
+        <li><strong>Time/Space Complexity:</strong> Clear DAA analysis cards comparing Dijkstra, A*, and Floyd-Warshall.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="box">
+      <div class="box-title">🛡️ 3. Admin Control Panel</div>
+      <p style="font-size: 12px; margin-bottom: 6px;"><code>admin-dashboard.html</code></p>
+      <ul>
+        <li><strong>Real-Time Incident Stream:</strong> Live feeds of active dispatches, priorities, and statuses.</li>
+        <li><strong>Hospital Bed Manager:</strong> Instant updating of ER beds, ICU availability, and status.</li>
+        <li><strong>Fleet Monitor:</strong> Track status of ambulances (Available, Busy, Maintenance).</li>
+        <li><strong>Database Settings:</strong> Configure live Supabase URL and keys directly from UI.</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="box-title">🌐 4. Landing Page</div>
+      <p style="font-size: 12px; margin-bottom: 6px;"><code>index.html</code></p>
+      <ul>
+        <li><strong>Live Dispatch Simulation:</strong> Animated radar map demonstrating ambulance-to-patient tracking.</li>
+        <li><strong>Quick Access Hub:</strong> Instant navigation links to User, Admin, and Algorithm modules.</li>
+        <li><strong>Service Metrics:</strong> Displays network metrics, coverage stats, and average response times.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- Section 4: DAA Algorithmic Foundation -->
+  <h2>4. Algorithmic Foundation (DAA Implementation)</h2>
+  <p>
+    The dispatch routing engine models the emergency transportation network as a directed weighted graph <code>G = (V, E)</code>, where vertices represent locations and edges represent roads with dynamic weight factors.
+  </p>
+
+  <div class="formula">
+    Edge Weight W(u, v) = Distance(u, v) × Traffic_Multiplier(u, v)
+  </div>
+
+  <p>
+    To find the optimal trajectory from the dispatched ambulance unit through the patient location to the selected hospital, Dijkstra's algorithm is executed:
+  </p>
+
+  <div class="code-block">// Core Relaxation Step in DAA Visualizer
+for (const neighbor of graph[currNode]) {
+    const edgeWeight = neighbor.dist * neighbor.traffic;
+    const altDistance = dist[currNode] + edgeWeight;
+
+    if (altDistance < dist[neighbor.to]) {
+        dist[neighbor.to] = altDistance;
+        prev[neighbor.to] = currNode;
+        priorityQueue.insert({ node: neighbor.to, priority: altDistance });
+    }
+}</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Algorithm</th>
+        <th>Time Complexity</th>
+        <th>Space Complexity</th>
+        <th>Role in SmartRoute</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Dijkstra (Min-Heap)</strong></td>
+        <td><code>O((V + E) log V)</code></td>
+        <td><code>O(V)</code></td>
+        <td>Primary path calculation from patient to nearest available trauma centers.</td>
+      </tr>
+      <tr>
+        <td><strong>A* Search (Heuristic)</strong></td>
+        <td><code>O(E)</code> (Best) / <code>O(b^d)</code></td>
+        <td><code>O(V)</code></td>
+        <td>Direct ambulance dispatch when GPS coordinates provide Euclidean distance heuristics.</td>
+      </tr>
+      <tr>
+        <td><strong>Dynamic Rerouting</strong></td>
+        <td><code>O(V log V)</code></td>
+        <td><code>O(V)</code></td>
+        <td>Re-plans path from current ambulance position upon patient hospital switch.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Section 5: Database Schema & Backend Connection -->
+  <h2>5. Backend Connection & Database Architecture</h2>
+  <p>
+    SmartRoute features a <strong>dual-mode abstraction layer</strong> implemented in <code>scripts/supabase-client.js</code>. The application automatically determines whether to send queries to a live cloud Supabase instance or save locally.
+  </p>
+
+  <h3>Database Relational Model (PostgreSQL / Supabase)</h3>
+  <div class="code-block">-- 1. HOSPITALS TABLE
+CREATE TABLE hospitals (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    latitude NUMERIC(10, 6) NOT NULL,
+    longitude NUMERIC(10, 6) NOT NULL,
+    available_er_beds INT DEFAULT 10,
+    icu_available BOOLEAN DEFAULT TRUE,
+    hospital_type VARCHAR(100),
+    status VARCHAR(50) DEFAULT 'active'
+);
+
+-- 2. AMBULANCES TABLE
+CREATE TABLE ambulances (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    unit_code VARCHAR(50) UNIQUE NOT NULL,
+    driver_name VARCHAR(100) NOT NULL,
+    driver_phone VARCHAR(50),
+    current_status VARCHAR(50) DEFAULT 'Available',
+    kit_loaded TEXT
+);
+
+-- 3. INCIDENTS TABLE
+CREATE TABLE incidents (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    ticket_code VARCHAR(50) UNIQUE NOT NULL,
+    patient_name VARCHAR(150),
+    emergency_type VARCHAR(100) NOT NULL,
+    severity_level VARCHAR(20) NOT NULL,
+    selected_hospital_id UUID REFERENCES hospitals(id),
+    assigned_ambulance_id UUID REFERENCES ambulances(id),
+    recommended_kit JSONB,
+    status VARCHAR(50) DEFAULT 'Dispatched',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);</div>
+
+  <!-- Section 6: Verification & Deployment -->
+  <h2>6. Running & Verification</h2>
+  <div class="box">
+    <div class="box-title">🚀 Local Deployment Guide</div>
+    <ol>
+      <li>Run server: <code>node server.js</code></li>
+      <li>Open Landing Page: <strong>http://localhost:3000/</strong></li>
+      <li>Open User Portal: <strong>http://localhost:3000/user-portal.html</strong></li>
+      <li>Open DAA Visualizer: <strong>http://localhost:3000/daa-explain.html</strong></li>
+      <li>Open Admin Dashboard: <strong>http://localhost:3000/admin-dashboard.html</strong> (Admin Login: <code>admin@smartroute.com</code> / <code>admin123</code>)</li>
+    </ol>
+  </div>
+
+  <p style="text-align: center; font-size: 11px; color: #94a3b8; margin-top: 24px;">
+    SmartRoute Emergency Medical Response System · Design & Analysis of Algorithms Project Report
+  </p>
+
+</body>
+</html>

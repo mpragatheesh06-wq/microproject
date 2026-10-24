@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAA Algorithm Presentation — SmartRoute</title>
+  <meta name="description" content="Design and Analysis of Algorithms (DAA) presentation & interactive shortest path routing visualization for SmartRoute." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/daa-explain.css" />
+</head>
+<body class="daa-body">
+
+  <!-- Nav -->
+  <nav class="daa-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2C8.477 2 4 6.477 4 12c0 7 10 16 10 16s10-9 10-16c0-5.523-4.477-10-10-10z" fill="#EF4444"/>
+          </svg>
+        </div>
+        <span class="brand-name">SmartRoute</span>
+      </a>
+      <div class="nav-daa-badge">⚡ DAA PROJECT EVALUATION PORTAL</div>
+      <div class="nav-links">
+        <a href="user-portal.html" class="btn-nav-primary">🚨 User Portal</a>
+        <a href="admin-dashboard.html" class="btn-nav-outline">Admin Panel</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Header -->
+  <header class="daa-header">
+    <div class="daa-header-content">
+      <div class="daa-pill">Design & Analysis of Algorithms (DAA)</div>
+      <h1>Dynamic Emergency Medical <span class="gradient-text">Routing Algorithm</span></h1>
+      <p>
+        An interactive demonstration of <strong>Dijkstra's Shortest Path & A* Heuristic Search</strong> applied to real-time ambulance dispatching, multi-criteria hospital selection, and dynamic re-routing.
+      </p>
+    </div>
+  </header>
+
+  <main class="daa-main">
+
+    <!-- Interactive Algorithm Visualizer Canvas -->
+    <section class="daa-card visualizer-card">
+      <div class="card-header">
+        <div>
+          <h2>1. Live Routing Graph & Rerouting Animation</h2>
+          <p>Watch how the algorithm calculates the optimal path from <strong>Ambulance Base ➔ Patient ➔ Hospital</strong></p>
+        </div>
+        <div class="algo-controls">
+          <button class="btn-algo-play" id="btnRunAlgo">▶ Run Dijkstra Algorithm</button>
+          <button class="btn-algo-reset" id="btnResetAlgo">🔄 Reset Graph</button>
+        </div>
+      </div>
+
+      <div class="visualizer-container">
+        <!-- Canvas Graph Visualizer -->
+        <div class="graph-canvas-wrap">
+          <canvas id="routingCanvas" width="720" height="420"></canvas>
+          <div class="graph-overlay-info" id="graphInfo">
+            <span>Status: <strong id="algoStatus" class="text-blue">Ready for execution</strong></span>
+            <span>Total Path Distance: <strong id="algoDistance">0.0 km</strong></span>
+            <span>ETA: <strong id="algoETA">-- min</strong></span>
+          </div>
+        </div>
+
+        <!-- Right Side Control: Hospital Choice & Live Stats -->
+        <div class="hospital-choice-panel">
+          <h3>🏥 Test Patient Hospital Rerouting</h3>
+          <p class="panel-desc">Select a preferred hospital to see real-time algorithmic re-routing:</p>
+
+          <div class="hosp-radio-group" id="hospRadioGroup">
+            <label class="hosp-radio-item active" data-hosp="h1">
+              <input type="radio" name="targetHosp" value="h1" checked />
+              <div>
+                <strong>Central General Hospital</strong>
+                <small>Distance: 3.8 km · ER Beds: 14 · Trauma Center</small>
+              </div>
+            </label>
+            <label class="hosp-radio-item" data-hosp="h2">
+              <input type="radio" name="targetHosp" value="h2" />
+              <div>
+                <strong>City Medical Center</strong>
+                <small>Distance: 5.4 km · ER Beds: 8 · General</small>
+              </div>
+            </label>
+            <label class="hosp-radio-item" data-hosp="h3">
+              <input type="radio" name="targetHosp" value="h3" />
+              <div>
+                <strong>Apollo Multi-Specialty</strong>
+                <small>Distance: 6.2 km · ER Beds: 5 · Specialty Care</small>
+              </div>
+            </label>
+            <label class="hosp-radio-item" data-hosp="h4">
+              <input type="radio" name="targetHosp" value="h4" />
+              <div>
+                <strong>St. Jude Emergency Clinic</strong>
+                <small>Distance: 7.1 km · ER Beds: 2 · Emergency Clinic</small>
+              </div>
+            </label>
+          </div>
+
+          <div class="cost-breakdown-card">
+            <h4>📊 Weighted Cost Formulation</h4>
+            <div class="math-expr">
+              $$\text{Edge Cost } C(u,v) = d(u,v) \times (1 + \alpha \cdot T_{traffic}) + \beta \cdot \frac{1}{\text{Beds}_{avail}}$$
+            </div>
+            <p class="math-desc">Where \(d(u,v)\) is Euclidean distance, \(T_{traffic}\) is real-time congestion index, and \(\text{Beds}_{avail}\) penalizes full hospitals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two Column: Algorithm Step-by-Step & Pseudocode -->
+    <div class="daa-two-col">
+
+      <!-- Step-by-Step Traversal Log -->
+      <section class="daa-card">
+        <div class="card-header">
+          <h3>2. Algorithm Execution Steps (Min-Heap Priority Queue)</h3>
+        </div>
+        <div class="step-log-container" id="stepLog">
+          <div class="step-log-item active">
+            <span class="step-num">Step 0</span>
+            <div class="step-text">Initialize Min-Heap Priority Queue \(Q = \{(A, 0)\}\), distance array \(dist[v] = \infty\), \(dist[A] = 0\).</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pseudocode Highlight Card -->
+      <section class="daa-card">
+        <div class="card-header">
+          <h3>3. Dijkstra Shortest Path Pseudocode</h3>
+        </div>
+        <div class="code-box" id="codeBox">
+<pre><code><span id="line1">1: function Dijkstra(Graph G, Source A, Target H):</span>
+<span id="line2">2:   dist[A] ← 0, dist[v] ← ∞ for all v ≠ A</span>
+<span id="line3">3:   PQ.insert(A, 0)</span>
+<span id="line4">4:   while PQ is not empty do:</span>
+<span id="line5">5:     u ← PQ.extractMin()</span>
+<span id="line6">6:     if u == Target then break</span>
+<span id="line7">7:     for each neighbor v of u do:</span>
+<span id="line8">8:       weight ← calculateWeightedCost(u, v)</span>
+<span id="line9">9:       if dist[u] + weight < dist[v] then:</span>
+<span id="line10">10:        dist[v] ← dist[u] + weight</span>
+<span id="line11">11:        parent[v] ← u</span>
+<span id="line12">12:        PQ.decreaseKey(v, dist[v])</span>
+<span id="line13">13:  return reconstructPath(parent, Target)</span></code></pre>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Theoretical Analysis & Complexity Section -->
+    <section class="daa-card complexity-card">
+      <div class="card-header">
+        <h2>4. DAA Theoretical Complexity & Algorithm Analysis</h2>
+      </div>
+
+      <div class="complexity-grid">
+        <div class="c-item">
+          <h4>Time Complexity</h4>
+          <div class="c-big text-red">\(O((V + E) \log V)\)</div>
+          <p>Using a Binary Min-Heap Priority Queue where \(V\) is the number of road intersections/hospitals and \(E\) is road segments.</p>
+        </div>
+        <div class="c-item">
+          <h4>Space Complexity</h4>
+          <div class="c-big text-purple">\(O(V + E)\)</div>
+          <p>Requires memory to store the Adjacency List graph representation, distance array, and parent pointers.</p>
+        </div>
+        <div class="c-item">
+          <h4>Greedy Choice Property</h4>
+          <div class="c-big text-green">Optimal Substructure</div>
+          <p>At each step, selecting the node with minimum tentative distance guarantees globally optimal shortest path without negative edges.</p>
+        </div>
+        <div class="c-item">
+          <h4>Dynamic Re-routing</h4>
+          <div class="c-big text-blue">\(O(E + V \log V)\)</div>
+          <p>When user selects a preferred hospital, the target node updates and the algorithm recalculates the optimal trajectory in sub-millisecond time.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <span>DAA Project Evaluation Portal · SmartRoute Medical System</span>
+    </div>
+  </footer>
+
+  <!-- KaTeX for Math Formatting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <script src="scripts/daa-visualizer.js"></script>
+</body>
+</html>
